@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumen — 简单的 HTML 演示</title>
+  <meta name="description" content="一个包含 HTML、CSS、JavaScript 与 assets 的最小前端演示。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    /* 尽早应用已保存的主题，避免刷新时闪一下 */
+    try {
+      var t = localStorage.getItem("lumen-theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Lumen 首页">
+      <img src="assets/logo.svg" alt="" width="28" height="28">
+      <span>Lumen</span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <a href="#features">特性</a>
+      <a href="#playground">演示</a>
+      <a href="#about">关于</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深浅色主题" aria-pressed="false">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">最小可运行示例</p>
+        <h1>简单，<br>但不将就。</h1>
+        <p class="lead">
+          一个包含 <code>HTML</code>、<code>CSS</code>、<code>JavaScript</code> 与
+          <code>assets</code> 的静态页面。没有构建步骤，没有第三方依赖，双击即可预览。
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#playground">试试交互</a>
+          <a class="btn btn-ghost" href="#features">看看结构</a>
+        </div>
+        <dl class="stats">
+          <div><dt>依赖</dt><dd>0</dd></div>
+          <div><dt>文件</dt><dd>3 + assets</dd></div>
+          <div><dt>响应式</dt><dd>100%</dd></div>
+        </dl>
+      </div>
+
+      <aside class="hero-card reveal" aria-label="实时演示卡片">
+        <div class="card-head">
+          <span class="dot dot-a"></span><span class="dot dot-b"></span><span class="dot dot-c"></span>
+          <span class="card-title">demo.js</span>
+        </div>
+        <div class="card-body">
+          <p class="clock-label">当前时间</p>
+          <p class="clock" id="clock" aria-live="polite">--:--:--</p>
+          <div class="counter">
+            <button class="step" id="minusBtn" type="button" aria-label="减一">−</button>
+            <output class="count" id="count" aria-live="polite">0</output>
+            <button class="step" id="plusBtn" type="button" aria-label="加一">＋</button>
+          </div>
+          <div class="meter" role="progressbar" aria-label="计数进度" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="meter">
+            <span class="meter-fill" id="meterFill"></span>
+          </div>
+          <p class="hint" id="hint">点一点，看看 JS 在工作。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="features" id="features">
+      <h2 class="section-title reveal">三个文件，讲清一件事</h2>
+      <div class="grid">
+        <article class="feature reveal">
+          <img src="assets/icon-structure.svg" alt="" width="36" height="36">
+          <h3>语义化结构</h3>
+          <p>header / main / section / footer 各归其位，屏幕阅读器与搜索引擎都读得懂。</p>
+        </article>
+        <article class="feature reveal">
+          <img src="assets/icon-theme.svg" alt="" width="36" height="36">
+          <h3>主题跟随</h3>
+          <p>默认跟随系统深浅色，手动切换后会记住你的选择，刷新也不会丢。</p>
+        </article>
+        <article class="feature reveal">
+          <img src="assets/icon-bolt.svg" alt="" width="36" height="36">
+          <h3>零依赖交互</h3>
+          <p>原生 DOM 与 CSS 变量完成计数、时钟和滚动出现，不引入任何库。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="paths reveal" id="playground">
+      <h2 class="section-title">目录一览</h2>
+      <pre class="tree" aria-label="项目目录结构"><code>.
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+└── assets/
+    ├── logo.svg
+    ├── favicon.svg
+    └── icon-*.svg</code></pre>
+    </section>
+
+    <section class="about reveal" id="about">
+      <h2 class="section-title">拿来即用</h2>
+      <p>
+        把颜色、字号和间距都收在 <code>css/style.css</code> 顶部的变量里，
+        改一行就能换一套气质。所有交互集中在 <code>js/main.js</code>，
+        每段都有注释，删掉任意一块都不会影响其余功能。
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> Lumen Demo · 静态页面，无追踪。</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
