@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="云中的山与红日">
+  <defs>
+    <clipPath id="avatar-clip"><circle cx="48" cy="48" r="48"/></clipPath>
+  </defs>
+  <g clip-path="url(#avatar-clip)">
+    <rect width="96" height="96" fill="#eee6d5"/>
+    <circle cx="63" cy="35" r="9" fill="#c2543f"/>
+    <path d="M0 72c14-20 30-22 42-8 12-16 32-18 54-4v36H0z" fill="#66665f"/>
+    <path d="M0 80c16-10 32-10 46 0 14-10 30-11 50-4v20H0z" fill="#96968c"/>
+  </g>
+</svg>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在雾里读书 · 蜃楼小记</title>
+  <meta name="description" content="关于注意力的一点实验：把手机放到另一个房间，把文字变窄，允许自己读得慢一点。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var theme = null;
+      try { theme = localStorage.getItem("mirages-theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        var hour = new Date().getHours();
+        theme = (hour >= 22 || hour < 6) ? "dark" : "light";
+      }
+      root.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-post">
+
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-controls="nav" aria-expanded="false">
+    <span class="bars" aria-hidden="true"><span></span></span>
+  </button>
+
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <aside class="nav" id="nav" aria-label="站点导航" aria-hidden="true" inert>
+    <div class="nav-author">
+      <img src="assets/avatar.svg" alt="" width="92" height="92">
+      <a class="nav-site" href="index.html">蜃楼小记</a>
+    </div>
+
+    <form class="search" action="index.html" method="get" role="search">
+      <label class="visually-hidden" for="q">搜索文章</label>
+      <input id="q" type="search" name="q" placeholder="搜索文章…" autocomplete="off">
+      <button type="submit" aria-label="搜索">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.6-3.6"></path>
+        </svg>
+      </button>
+    </form>
+
+    <nav class="nav-menu" aria-label="菜单">
+      <a href="index.html">首页</a>
+      <a href="index.html#archive">归档</a>
+      <a href="index.html#about">关于</a>
+    </nav>
+
+    <label class="switch">
+      <span>夜间模式</span>
+      <input type="checkbox" id="themeSwitch" role="switch">
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </aside>
+
+  <main>
+    <div class="container">
+      <article class="article">
+        <header class="article-header reveal">
+          <h1 class="post-title">在雾里读书：关于注意力的一点实验</h1>
+          <p class="article-meta">
+            <time datetime="2026-11-20">2026 年 11 月 20 日</time>
+            <span>随笔</span>
+            <span>约 6 分钟</span>
+          </p>
+        </header>
+
+        <div class="post-content">
+          <p>这个月我做了一个很朴素的实验：不装新的应用，也不靠意志力，只改变读书时身体周围的那几样东西。结果是，注意力比我想的更像一种环境问题。</p>
+          <p>实验持续了三十天。每天读四十分钟，读完在纸上记一行字：今天有没有走神，走神了几次，因为什么。记录很粗糙，但足够看出一些重复出现的模式。</p>
+
+          <h2>一、把手机放到另一个房间</h2>
+          <p>第一周只做了一件事：读书时把手机放到另一个房间，关上门。不是为了“忍住不看”，而是让它变得需要站起来、走过去，才能看见。</p>
+          <p>这个动作没有让我变得更自律，只是把一次冲动的成本从“抬起眼睛”提高到了“离开椅子”。大多数冲动在这个距离上就消失了。</p>
+
+          <blockquote><p>专注不是把世界关掉，而是只留下一个入口。</p></blockquote>
+
+          <p>第二周开始，我注意到走神的次数并没有归零，但走神之后回来的速度变快了。以前一次分心会带走十分钟，现在往往几十秒就能回到段落里。</p>
+
+          <h2>二、让文字变窄</h2>
+          <p>第二件事与屏幕有关。我把阅读器的行宽收窄到三十到四十个汉字，行距放到接近两倍。眼睛从一行末尾回到下一行开头时，不需要重新寻找位置。</p>
+          <p>这听起来像排版细节，实际影响的是节奏。宽栏让人读得快，也更容易滑走；窄栏逼着人慢下来，一行只装一个意思。</p>
+
+          <pre><code>.measure {
+  max-width: 42em;
+  line-height: 1.95;
+}</code></pre>
+
+          <p>当然，窄栏不是越窄越好。一行少于二十个字，断句会变得频繁，阅读反而碎。三十到四十，是我试过最舒服的区间。</p>
+
+          <h2>三、留一点雾</h2>
+          <p>最后一件小事，是允许自己读得慢。以前我会给每次阅读设定页数，现在我更愿意设时间：四十分钟到了就停，哪怕只读了三页。</p>
+          <p>雾不是障碍。雾让远处的山有了层次，也让近处的字有了停顿。</p>
+
+          <figure>
+            <img src="assets/scroll.jpg" alt="米友仁《云山图》局部：连绵的山峦与云雾" width="1920" height="342" loading="lazy">
+            <figcaption>米友仁《云山图》（1130），克利夫兰艺术博物馆，CC0。</figcaption>
+          </figure>
+
+          <p>三十天结束时，走神的次数没有变成零。但我不再把它当成失败，而是当成阅读的一部分：看见它，回到句子，继续往下读。</p>
+        </div>
+
+        <div class="post-tags">
+          <span class="tag-label">标签</span>
+          <a href="index.html?q=阅读">阅读</a>
+          <a href="index.html?q=注意力">注意力</a>
+          <a href="index.html?q=随笔">随笔</a>
+        </div>
+
+        <nav class="post-nav" aria-label="文章导航">
+          <a href="post-night.html">
+            <span class="label">上一篇</span>
+            <span class="title">把夜间模式交给时钟</span>
+          </a>
+          <a class="next" href="post-narrow.html">
+            <span class="label">下一篇</span>
+            <span class="title">窄栏为什么更好读</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> 蜃楼小记 <span class="sep">·</span> 静态演示 <span class="sep">·</span> 视觉参考 <a href="https://github.com/ccjuse/Mirages-For-Typecho" target="_blank" rel="noopener">Mirages</a> by Hran</p>
+    <p>图像：<a href="https://commons.wikimedia.org/wiki/File:Gao_Ranhui_-_Misty_Mountains_-_Walters_351685.jpg" target="_blank" rel="noopener">《Misty Mountains》</a>（Walters Art Museum，公有领域）<span class="sep">·</span><a href="https://commons.wikimedia.org/wiki/File:Clevelandart_1933.220.jpg" target="_blank" rel="noopener">《Cloudy Mountains》</a>（米友仁，CC0）</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>把夜间模式交给时钟 · 蜃楼小记</title>
+  <meta name="description" content="22 点到次日 6 点，页面自己变暗：为什么好的默认值应该替用户做一次不打扰的决定。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var theme = null;
+      try { theme = localStorage.getItem("mirages-theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        var hour = new Date().getHours();
+        theme = (hour >= 22 || hour < 6) ? "dark" : "light";
+      }
+      root.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-post">
+
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-controls="nav" aria-expanded="false">
+    <span class="bars" aria-hidden="true"><span></span></span>
+  </button>
+
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <aside class="nav" id="nav" aria-label="站点导航" aria-hidden="true" inert>
+    <div class="nav-author">
+      <img src="assets/avatar.svg" alt="" width="92" height="92">
+      <a class="nav-site" href="index.html">蜃楼小记</a>
+    </div>
+
+    <form class="search" action="index.html" method="get" role="search">
+      <label class="visually-hidden" for="q">搜索文章</label>
+      <input id="q" type="search" name="q" placeholder="搜索文章…" autocomplete="off">
+      <button type="submit" aria-label="搜索">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.6-3.6"></path>
+        </svg>
+      </button>
+    </form>
+
+    <nav class="nav-menu" aria-label="菜单">
+      <a href="index.html">首页</a>
+      <a href="index.html#archive">归档</a>
+      <a href="index.html#about">关于</a>
+    </nav>
+
+    <label class="switch">
+      <span>夜间模式</span>
+      <input type="checkbox" id="themeSwitch" role="switch">
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </aside>
+
+  <main>
+    <div class="container">
+      <article class="article">
+        <header class="article-header reveal">
+          <h1 class="post-title">把夜间模式交给时钟</h1>
+          <p class="article-meta">
+            <time datetime="2026-10-30">2026 年 10 月 30 日</time>
+            <span>前端</span>
+            <span>约 4 分钟</span>
+          </p>
+        </header>
+
+        <div class="post-content">
+          <p>大多数网站把夜间模式做成一个需要主动寻找的开关。但这篇文章的默认值是：晚上十点以后，页面自己变暗。</p>
+
+          <h2>22 点到 6 点</h2>
+          <p>逻辑只有三行。读取本地时间，判断是否落在夜间区间，然后给根元素换一个属性。剩下的交给 CSS 变量：</p>
+
+          <pre><code>const hour = new Date().getHours();
+const night = hour &gt;= 22 || hour &lt; 6;
+document.documentElement.dataset.theme = night ? "dark" : "light";</code></pre>
+
+          <p>这段代码要尽早执行，最好放在样式表之前。否则页面会先亮一下，再突然变暗，像有人在你面前按了两次灯。</p>
+
+          <h2>为什么按时钟</h2>
+          <p>系统级设置已经能表达偏好，但很多人并不会去改它。时钟是一个更朴素的信号：天黑了，屏幕该暗一点。它不完美，却几乎不需要解释。</p>
+
+          <blockquote><p>好的默认值，应该替用户做一次不打扰的决定。</p></blockquote>
+
+          <p>按时钟切换还有一个好处：它不会在白天和黑夜之间反复横跳。比起跟着环境光传感器抖动，一个固定的时间区间更稳定，也更容易被理解。</p>
+
+          <h2>一个开关</h2>
+          <p>默认值不等于强制。用户手动切过之后，选择应该被记住：</p>
+
+          <pre><code>themeSwitch.addEventListener("change", () =&gt; {
+  const next = themeSwitch.checked ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("mirages-theme", next);
+});</code></pre>
+
+          <p>保存过的值优先于时钟。这样，“自动”负责第一次见面，“手动”负责之后的每一次。</p>
+          <p>这个演示把开关放在左侧抽屉的底部。打开菜单，切一下，再刷新页面，选择会留在原地。</p>
+        </div>
+
+        <div class="post-tags">
+          <span class="tag-label">标签</span>
+          <a href="index.html?q=前端">前端</a>
+          <a href="index.html?q=夜间模式">夜间模式</a>
+          <a href="index.html?q=CSS">CSS</a>
+        </div>
+
+        <nav class="post-nav" aria-label="文章导航">
+          <a href="post-narrow.html">
+            <span class="label">上一篇</span>
+            <span class="title">窄栏为什么更好读</span>
+          </a>
+          <a class="next" href="post.html">
+            <span class="label">下一篇</span>
+            <span class="title">在雾里读书：关于注意力的一点实验</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> 蜃楼小记 <span class="sep">·</span> 静态演示 <span class="sep">·</span> 视觉参考 <a href="https://github.com/ccjuse/Mirages-For-Typecho" target="_blank" rel="noopener">Mirages</a> by Hran</p>
+    <p>图像：<a href="https://commons.wikimedia.org/wiki/File:Gao_Ranhui_-_Misty_Mountains_-_Walters_351685.jpg" target="_blank" rel="noopener">《Misty Mountains》</a>（Walters Art Museum，公有领域）<span class="sep">·</span><a href="https://commons.wikimedia.org/wiki/File:Clevelandart_1933.220.jpg" target="_blank" rel="noopener">《Cloudy Mountains》</a>（米友仁，CC0）</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

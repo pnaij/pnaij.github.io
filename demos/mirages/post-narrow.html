@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>窄栏为什么更好读 · 蜃楼小记</title>
+  <meta name="description" content="710 像素、三十来个汉字、接近两倍行距：窄栏是在替眼睛计算回程的距离。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var theme = null;
+      try { theme = localStorage.getItem("mirages-theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        var hour = new Date().getHours();
+        theme = (hour >= 22 || hour < 6) ? "dark" : "light";
+      }
+      root.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-post">
+
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-controls="nav" aria-expanded="false">
+    <span class="bars" aria-hidden="true"><span></span></span>
+  </button>
+
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <aside class="nav" id="nav" aria-label="站点导航" aria-hidden="true" inert>
+    <div class="nav-author">
+      <img src="assets/avatar.svg" alt="" width="92" height="92">
+      <a class="nav-site" href="index.html">蜃楼小记</a>
+    </div>
+
+    <form class="search" action="index.html" method="get" role="search">
+      <label class="visually-hidden" for="q">搜索文章</label>
+      <input id="q" type="search" name="q" placeholder="搜索文章…" autocomplete="off">
+      <button type="submit" aria-label="搜索">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.6-3.6"></path>
+        </svg>
+      </button>
+    </form>
+
+    <nav class="nav-menu" aria-label="菜单">
+      <a href="index.html">首页</a>
+      <a href="index.html#archive">归档</a>
+      <a href="index.html#about">关于</a>
+    </nav>
+
+    <label class="switch">
+      <span>夜间模式</span>
+      <input type="checkbox" id="themeSwitch" role="switch">
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </aside>
+
+  <main>
+    <div class="container">
+      <article class="article">
+        <header class="article-header reveal">
+          <h1 class="post-title">窄栏为什么更好读</h1>
+          <p class="article-meta">
+            <time datetime="2026-11-12">2026 年 11 月 12 日</time>
+            <span>设计</span>
+            <span>约 5 分钟</span>
+          </p>
+        </header>
+
+        <div class="post-content">
+          <p>如果把网页当成一张纸，最先该决定的不是字体，而是宽度。字体决定气质，宽度决定眼睛要不要加班。</p>
+
+          <h2>视线的回程</h2>
+          <p>每读完一行，眼睛都要从行尾折返到下一行的行首。这个动作叫回扫。行越长，回扫的距离越长，越容易在密密麻麻的字里找错行。</p>
+          <p>窄栏的价值不在于“显得文艺”，而在于把这个折返距离控制在一个几乎不需要思考的范围里。读得顺的时候，你甚至不会意识到自己在换行。</p>
+
+          <blockquote><p>阅读的流畅感，来自一次次不被察觉的换行。</p></blockquote>
+
+          <p>所以窄栏常常配着较大的行距。行距是给回扫留的缓冲，也是给眼睛留的落点。两者一起工作，宽和高才成为一个比例。</p>
+
+          <h2>一行装多少字</h2>
+          <p>没有一个放之四海皆准的数字，但有一些被反复验证的区间：</p>
+          <ul>
+            <li>中文正文：一行 30–40 个汉字比较舒服；</li>
+            <li>拉丁文字：一行 45–75 个字符；</li>
+            <li>行距：正文的 1.7–2.0 倍；</li>
+            <li>两侧留白：宁可窄一点，也不要贴着屏幕边缘。</li>
+          </ul>
+          <p>超过这个区间，眼睛需要更努力地定位；低于这个区间，断句太频繁，节奏会碎。真正的目标不是某个像素值，而是让每一行只承载一个完整的意思。</p>
+
+          <h2>留白不是浪费</h2>
+          <p>窄栏意味着两侧会空出大片位置。在宽屏上，这些留白常常让人不安，于是被塞进侧边栏、推荐位和浮窗。但它们原本是用来承托正文的。</p>
+          <p>一个简单的内容栏，配一对相等的左右边距，就已经足够。下面的写法跑过很多年，仍然好用：</p>
+
+          <pre><code>.page {
+  max-width: 710px;
+  margin: 0 auto;
+  padding: 0 24px;
+  line-height: 1.95;
+}</code></pre>
+
+          <p>710 像素不是魔法数字。它只是让 16 到 17 像素的中文正文落在四十字以内，同时给代码块和图片留出一点余地。换一种字号，合适的宽度也会跟着变。</p>
+          <p>排版做到最后，读者不会夸你的栏宽。他们只会觉得，这篇文章读起来不费劲。</p>
+        </div>
+
+        <div class="post-tags">
+          <span class="tag-label">标签</span>
+          <a href="index.html?q=设计">设计</a>
+          <a href="index.html?q=排版">排版</a>
+          <a href="index.html?q=阅读">阅读</a>
+        </div>
+
+        <nav class="post-nav" aria-label="文章导航">
+          <a href="post.html">
+            <span class="label">上一篇</span>
+            <span class="title">在雾里读书：关于注意力的一点实验</span>
+          </a>
+          <a class="next" href="post-night.html">
+            <span class="label">下一篇</span>
+            <span class="title">把夜间模式交给时钟</span>
+          </a>
+        </nav>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> 蜃楼小记 <span class="sep">·</span> 静态演示 <span class="sep">·</span> 视觉参考 <a href="https://github.com/ccjuse/Mirages-For-Typecho" target="_blank" rel="noopener">Mirages</a> by Hran</p>
+    <p>图像：<a href="https://commons.wikimedia.org/wiki/File:Gao_Ranhui_-_Misty_Mountains_-_Walters_351685.jpg" target="_blank" rel="noopener">《Misty Mountains》</a>（Walters Art Museum，公有领域）<span class="sep">·</span><a href="https://commons.wikimedia.org/wiki/File:Clevelandart_1933.220.jpg" target="_blank" rel="noopener">《Cloudy Mountains》</a>（米友仁，CC0）</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

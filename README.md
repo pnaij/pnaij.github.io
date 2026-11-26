@@ -7,6 +7,7 @@
 | Demo | 访问地址 |
 | --- | --- |
 | Lumen | https://pnaij.github.io/demos/lumen/ |
+| Mirages（风格复刻） | https://pnaij.github.io/demos/mirages/ |
 
 ## 新增一个 demo
 

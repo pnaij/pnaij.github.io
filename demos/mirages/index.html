@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蜃楼小记 · Mirages 风格演示</title>
+  <meta name="description" content="蜃楼小记：一个 Mirages 风格的静态阅读博客演示，窄栏、衬线正文、抽屉菜单与自动夜间模式。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <script>
+    /* 尽早确定主题：已保存的优先，其次按当地时间 22:00–06:00 自动 */
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+      var theme = null;
+      try { theme = localStorage.getItem("mirages-theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        var hour = new Date().getHours();
+        theme = (hour >= 22 || hour < 6) ? "dark" : "light";
+      }
+      root.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="打开菜单" aria-controls="nav" aria-expanded="false">
+    <span class="bars" aria-hidden="true"><span></span></span>
+  </button>
+
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+  <aside class="nav" id="nav" aria-label="站点导航" aria-hidden="true" inert>
+    <div class="nav-author">
+      <img src="assets/avatar.svg" alt="" width="92" height="92">
+      <a class="nav-site" href="index.html">蜃楼小记</a>
+    </div>
+
+    <form class="search" action="index.html" method="get" role="search">
+      <label class="visually-hidden" for="q">搜索文章</label>
+      <input id="q" type="search" name="q" placeholder="搜索文章…" autocomplete="off">
+      <button type="submit" aria-label="搜索">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.6-3.6"></path>
+        </svg>
+      </button>
+    </form>
+
+    <nav class="nav-menu" aria-label="菜单">
+      <a href="index.html">首页</a>
+      <a href="index.html#archive">归档</a>
+      <a href="index.html#about">关于</a>
+    </nav>
+
+    <label class="switch">
+      <span>夜间模式</span>
+      <input type="checkbox" id="themeSwitch" role="switch">
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </aside>
+
+  <header class="masthead">
+    <div class="masthead-inner reveal">
+      <h1>蜃楼小记</h1>
+      <p class="masthead-sub">Mirages 风格的静态阅读博客演示</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="search-result" id="searchResult" role="status" aria-live="polite"></div>
+
+      <p class="site-intro reveal">这是一个 Mirages 风格的静态阅读博客演示：窄栏、衬线正文、左侧抽屉，以及按当地时间自动切换的夜间模式。三篇示例文章都在下面。</p>
+
+      <section class="posts" aria-label="最新文章">
+        <article class="post reveal" data-search="在雾里读书 注意力 随笔 阅读 手机 窄栏">
+          <h2 class="post-title"><a href="post.html">在雾里读书：关于注意力的一点实验</a></h2>
+          <p class="post-meta">
+            <time datetime="2026-11-20">2026 年 11 月 20 日</time>
+            <span>随笔</span>
+          </p>
+          <p class="post-excerpt">把手机放到另一个房间，把一行字缩短到三十几个汉字。注意力也许不是一种意志力，而是一种环境设计。</p>
+          <a class="more" href="post.html">继续阅读</a>
+        </article>
+
+        <article class="post reveal" data-search="窄栏 为什么 更好读 设计 排版 宽度 行距">
+          <h2 class="post-title"><a href="post-narrow.html">窄栏为什么更好读</a></h2>
+          <p class="post-meta">
+            <time datetime="2026-11-12">2026 年 11 月 12 日</time>
+            <span>设计</span>
+          </p>
+          <p class="post-excerpt">710 像素、三十来个汉字、接近两倍行距。窄栏不是排版洁癖，它是在替眼睛计算回程的距离。</p>
+          <a class="more" href="post-narrow.html">继续阅读</a>
+        </article>
+
+        <article class="post reveal" data-search="夜间模式 时钟 前端 22 点 自动 主题">
+          <h2 class="post-title"><a href="post-night.html">把夜间模式交给时钟</a></h2>
+          <p class="post-meta">
+            <time datetime="2026-10-30">2026 年 10 月 30 日</time>
+            <span>前端</span>
+          </p>
+          <p class="post-excerpt">22 点到次日 6 点，页面自己变暗。与其让读者在设置里找开关，不如把这件事交给时钟。</p>
+          <a class="more" href="post-night.html">继续阅读</a>
+        </article>
+      </section>
+
+      <figure class="index-figure reveal">
+        <img src="assets/scroll.jpg" alt="米友仁《云山图》局部：连绵的山峦与云雾" width="1920" height="342" loading="lazy">
+        <figcaption>米友仁《云山图》（1130）· 克利夫兰艺术博物馆 · CC0</figcaption>
+      </figure>
+
+      <section class="section" id="archive">
+        <h2 class="section-title">归档</h2>
+        <ul class="archive-list">
+          <li class="reveal">
+            <a href="post.html">
+              <span>在雾里读书：关于注意力的一点实验</span>
+              <time datetime="2026-11-20">2026-11-20</time>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="post-narrow.html">
+              <span>窄栏为什么更好读</span>
+              <time datetime="2026-11-12">2026-11-12</time>
+            </a>
+          </li>
+          <li class="reveal">
+            <a href="post-night.html">
+              <span>把夜间模式交给时钟</span>
+              <time datetime="2026-10-30">2026-10-30</time>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <img src="assets/avatar.svg" alt="蜃楼小记的头像：云中的山与红日" width="88" height="88">
+        <div class="reveal">
+          <h2 id="about-title">关于</h2>
+          <p>这里是蜃楼小记，一个用来展示 Mirages 视觉语言的静态站点：窄栏阅读、衬线正文、左侧抽屉，以及一盏按时亮起的夜间模式。</p>
+          <p>文章内容均为示例文字，站点不收集任何数据。想回到主题本身，可以看页脚的出处链接。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> 蜃楼小记 <span class="sep">·</span> 静态演示 <span class="sep">·</span> 视觉参考 <a href="https://github.com/ccjuse/Mirages-For-Typecho" target="_blank" rel="noopener">Mirages</a> by Hran</p>
+    <p>图像：<a href="https://commons.wikimedia.org/wiki/File:Gao_Ranhui_-_Misty_Mountains_-_Walters_351685.jpg" target="_blank" rel="noopener">《Misty Mountains》</a>（Walters Art Museum，公有领域）<span class="sep">·</span><a href="https://commons.wikimedia.org/wiki/File:Clevelandart_1933.220.jpg" target="_blank" rel="noopener">《Cloudy Mountains》</a>（米友仁，CC0）</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
